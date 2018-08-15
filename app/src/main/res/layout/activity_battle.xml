@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <TextView
+        android:id="@+id/battle_activity_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true"/>
+
+    <com.movingmover.oem.movingmover.widget.BoardView
+        xmlns:movingmover="http://schemas.android.com/apk/res/com.movingmover.oem.movingmover"
+        android:id="@+id/board_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/battle_activity_title"
+        movingmover:size="5"
+        movingmover:boardColorOne="#AA00AA"
+        movingmover:boardColorTwo="#000000"
+        movingmover:borderSize="1"
+        />
+
+    <Button
+        android:id="@+id/up"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/board_view"
+        android:text="@string/up"
+        android:layout_centerHorizontal="true"/>
+    <LinearLayout
+        android:id="@+id/left_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/up"
+        android:orientation="horizontal"
+        android:layout_centerHorizontal="true">
+
+        <Button
+            android:id="@+id/left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/left"/>
+
+        <Button
+            android:id="@+id/right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/right"/>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/down"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/left_right"
+        android:text="@string/down"
+        android:layout_centerHorizontal="true"/>
+    <com.movingmover.oem.movingmover.widget.ArrowView
+        xmlns:movingmover="http://schemas.android.com/apk/res/com.movingmover.oem.movingmover"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/down"
+        movingmover:arrowColorOne="#FFFFFF"
+        movingmover:arrowColorTwo="#7777CC"
+        movingmover:arrowColorThree="#555500"
+        movingmover:arrowBorderSize="8dp"
+        movingmover:arrowOrientation="left"
+        />
+
+</RelativeLayout>

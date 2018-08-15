@@ -1,0 +1,19 @@
+<resources>
+    <declare-styleable name="Square">
+        <attr name="colorOne" format="color"></attr>
+        <attr name="colorTwo" format="color"></attr>
+    </declare-styleable>
+    <declare-styleable name="Board">
+        <attr name="size" format="integer"></attr>
+        <attr name="boardColorOne" format="color"></attr>
+        <attr name="boardColorTwo" format="color"></attr>
+        <attr name="borderSize" format="float"></attr>
+    </declare-styleable>
+    <declare-styleable name="Arrow">
+        <attr name="arrowColorOne" format="color"></attr>
+        <attr name="arrowColorTwo" format="color"></attr>
+        <attr name="arrowColorThree" format="color"></attr>
+        <attr name="arrowBorderSize" format="dimension"></attr>
+        <attr name="arrowOrientation" format="string"></attr>
+    </declare-styleable>
+</resources>

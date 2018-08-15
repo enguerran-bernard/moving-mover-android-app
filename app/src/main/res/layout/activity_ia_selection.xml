@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.movingmover.oem.movingmover.LoginActivity">
+
+    <TextView
+        android:id="@+id/ia_activity_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/ia_activity_title"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true"/>
+
+    <Spinner
+        android:id="@+id/ia1_spinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ia_activity_title"
+        android:layout_centerHorizontal="true"/>
+
+    <Spinner
+        android:id="@+id/ia2_spinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ia1_spinner"
+        android:layout_centerHorizontal="true"/>
+
+    <Button
+        android:id="@+id/launch_game_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/game_confirmation_text"
+        android:layout_below="@id/ia2_spinner"
+        android:layout_centerHorizontal="true"/>
+
+
+</RelativeLayout>

@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">MovingMover</string>
+    <string name="login_activity_title">MOVING MOVER</string>
+    <string name="login_text">identifier</string>
+    <string name="password_text">password</string>
+    <string name="login_confirmation_text">OK</string>
+
+    <string name="ia_activity_title">WELCOME</string>
+    <string name="game_confirmation_text">LET IT GO</string>
+    <string name="ia_name_default">basic IA</string>
+
+    <string name="battle_activity_title">%1$s VS %2$s</string>
+    <string name="up">UP</string>
+    <string name="down">DOWN</string>
+    <string name="right">RIGHT</string>
+    <string name="left">LEFT</string>
+</resources>
