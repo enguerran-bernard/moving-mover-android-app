@@ -16,12 +16,13 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.movingmover.oem.movingmover.animation.AnimationQueueElement;
 import com.movingmover.oem.movingmover.helper.Arrow;
 import com.movingmover.oem.movingmover.helper.Coord;
 import com.movingmover.oem.movingmover.helper.MovingMoverHandlerMessages;
 import com.movingmover.oem.movingmover.helper.MovingMoverIntent;
 import com.movingmover.oem.movingmover.helper.Player;
+import com.movingmover.oem.movingmover.sound.SoundHelper;
+import com.movingmover.oem.movingmover.sound.SoundReadyListener;
 import com.movingmover.oem.movingmover.webservice.Controller;
 import com.movingmover.oem.movingmover.webservice.ControllerListener;
 import com.movingmover.oem.movingmover.widget.ArrowView;
@@ -31,7 +32,7 @@ import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class BattleActivity extends Activity implements ControllerListener {
+public class BattleActivity extends Activity implements ControllerListener, SoundReadyListener {
 
     private static final String TAG = BattleActivity.class.getSimpleName();
 
@@ -58,7 +59,7 @@ public class BattleActivity extends Activity implements ControllerListener {
         mPlayerList = new HashMap<>();
         mArrowList = new ArrayList<>();
         initIAView();
-        initBoardData();
+        initSounds();
     }
 
     private void initIAView() {
@@ -69,8 +70,13 @@ public class BattleActivity extends Activity implements ControllerListener {
         mTitleView.setText(getResources().getString(R.string.battle_activity_title, mFirstIAName, mSecondIAName));
     }
 
-    private Bitmap getBitmap(byte[] bytes) {
-        return BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+    private void initSounds() {
+        SoundHelper.loadSounds(this, this);
+    }
+
+    @Override
+    public void onSoundsLoaded() {
+        initBoardData();
     }
 
     private void initBoardData() {
@@ -80,6 +86,10 @@ public class BattleActivity extends Activity implements ControllerListener {
                 mController.getGame();
             }
         });
+    }
+
+    private Bitmap getBitmap(byte[] bytes) {
+        return BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
     }
 
     private static class MainThreadHandler extends Handler{
@@ -151,13 +161,6 @@ public class BattleActivity extends Activity implements ControllerListener {
                     activity.addContentView(playerView, new ViewGroup.LayoutParams(
                             ViewGroup.LayoutParams.WRAP_CONTENT,
                             ViewGroup.LayoutParams.WRAP_CONTENT));
-
-/*
-                    activity.mBoardView.addView(playerView, new ViewGroup.LayoutParams(
-                            ViewGroup.LayoutParams.WRAP_CONTENT,
-                            ViewGroup.LayoutParams.WRAP_CONTENT));
-*/
-                    activity.mBoardView.invalidate();
 
                     activity.mBoardView.putPlayer(playerView, playerCoord);
                     break;

@@ -1,9 +1,12 @@
 package com.movingmover.oem.movingmover.animation;
 
+import android.content.Context;
 import android.graphics.Color;
+import android.media.MediaPlayer;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 
+import com.movingmover.oem.movingmover.R;
 import com.movingmover.oem.movingmover.widget.ArrowView;
 import com.movingmover.oem.movingmover.widget.BoardView;
 
@@ -14,9 +17,9 @@ public class HitArrow extends AnimationQueueElement {
 
     private String mState;
 
-    public HitArrow(BoardAnimationManager boardAnimationManager, ArrowView imageView,
+    public HitArrow(Context context, BoardAnimationManager boardAnimationManager, ArrowView imageView,
                     int duration, String state) {
-        super(boardAnimationManager, imageView, duration);
+        super(context, boardAnimationManager, imageView, duration);
         mState = state;
     }
 
@@ -39,6 +42,7 @@ public class HitArrow extends AnimationQueueElement {
         animation.setAnimationListener(new Animation.AnimationListener() {
             @Override
             public void onAnimationStart(Animation animation) {
+                mBoardAnimationManager.onAnimationStart();
             }
 
             @Override
@@ -71,6 +75,7 @@ public class HitArrow extends AnimationQueueElement {
                 mImageView.post(new Runnable() {
                     @Override
                     public void run() {
+                        mBoardAnimationManager.onAnimationStart();
                         ((ArrowView) mImageView).setColorTwo(Color.RED);
                     }
                 });
@@ -94,5 +99,10 @@ public class HitArrow extends AnimationQueueElement {
         });
         animation.setFillAfter(true);
         mImageView.startAnimation(animation);
+    }
+
+    @Override
+    public int getSoundId() {
+        return R.raw.hitarrow;
     }
 }

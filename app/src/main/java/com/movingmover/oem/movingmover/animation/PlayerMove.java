@@ -1,12 +1,15 @@
 package com.movingmover.oem.movingmover.animation;
 
+import android.content.Context;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
+import android.media.MediaPlayer;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 
+import com.movingmover.oem.movingmover.R;
 import com.movingmover.oem.movingmover.helper.Coord;
 import com.movingmover.oem.movingmover.widget.BoardView;
 
@@ -15,9 +18,9 @@ public class PlayerMove extends AnimationQueueElement {
         private Coord mCoordDest;
         private boolean mIsChoosed;
 
-        public PlayerMove(BoardAnimationManager boardAnimationManager, ImageView imageView,
+        public PlayerMove(Context context, BoardAnimationManager boardAnimationManager, ImageView imageView,
                           int duration, Coord coordInit, Coord coordDest, boolean isChoosed) {
-            super(boardAnimationManager, imageView, duration);
+            super(context, boardAnimationManager, imageView, duration);
             mCoordInit = coordInit;
             mCoordDest = coordDest;
             mIsChoosed = isChoosed;
@@ -46,6 +49,7 @@ public class PlayerMove extends AnimationQueueElement {
                 mImageView.post(new Runnable() {
                     @Override
                     public void run() {
+                        mBoardAnimationManager.onAnimationStart();
                         if (!mIsChoosed) {
                             int blackColor = Color.parseColor("#FF0000");
                             PorterDuff.Mode mMode = PorterDuff.Mode.SRC_ATOP;
@@ -78,5 +82,10 @@ public class PlayerMove extends AnimationQueueElement {
         });
         animation.setFillAfter(false);
         mImageView.startAnimation(animation);
+    }
+
+    @Override
+    public int getSoundId() {
+        return R.raw.move;
     }
 }

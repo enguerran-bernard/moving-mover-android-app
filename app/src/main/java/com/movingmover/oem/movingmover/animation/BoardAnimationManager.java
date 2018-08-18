@@ -1,27 +1,31 @@
 package com.movingmover.oem.movingmover.animation;
 
 
-import android.media.MediaPlayer;
+import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
 import android.widget.ImageView;
 
 import com.movingmover.oem.movingmover.helper.Coord;
+import com.movingmover.oem.movingmover.sound.SoundHelper;
 import com.movingmover.oem.movingmover.widget.ArrowView;
 import com.movingmover.oem.movingmover.widget.BoardView;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 
-public class BoardAnimationManager implements  AnimationQueueElementListener{
+public class BoardAnimationManager implements AnimationQueueElementListener {
 
     private static final int  ANIMATION_DURATION = 1000;
+
     private ArrayList<AnimationQueueElement> mAnimationQueue;
 
+    private Context mContext;
     private BoardView mBoardView;
     private AnimationHandler mAnimationHandler;
 
-    public BoardAnimationManager(BoardView boardView) {
+    public BoardAnimationManager(Context context, BoardView boardView) {
+        mContext = context;
         mBoardView = boardView;
         mAnimationQueue = new ArrayList<>();
         mAnimationHandler = new AnimationHandler(this);
@@ -36,33 +40,33 @@ public class BoardAnimationManager implements  AnimationQueueElementListener{
     }
 
     public void putPlayer(ImageView imageView, Coord coord) {
-        PutPlayer putPlayer = new PutPlayer(this, imageView, ANIMATION_DURATION, coord);
+        PutPlayer putPlayer = new PutPlayer(mContext, this, imageView, ANIMATION_DURATION, coord);
         mAnimationHandler.sendMessage(mAnimationHandler
                 .obtainMessage(AnimationHandler.ADD_ANIMATION, putPlayer));
     }
 
     public void movePlayer(ImageView imageView, Coord coordInit, Coord coordDest, boolean isChoosed,
                            int duration) {
-        PlayerMove playerMove = new PlayerMove(this, imageView,
+        PlayerMove playerMove = new PlayerMove(mContext, this, imageView,
                 ANIMATION_DURATION, coordInit, coordDest, isChoosed);
         mAnimationHandler.sendMessage(mAnimationHandler
                 .obtainMessage(AnimationHandler.ADD_ANIMATION, playerMove));
     }
 
     public void removePlayer(ImageView imageView) {
-        PlayerDeath playerDeath = new PlayerDeath(this, imageView, ANIMATION_DURATION);
+        PlayerDeath playerDeath = new PlayerDeath(mContext, this, imageView, ANIMATION_DURATION);
         mAnimationHandler.sendMessage(mAnimationHandler
                 .obtainMessage(AnimationHandler.ADD_ANIMATION, playerDeath));
     }
 
     public void putArrow(ImageView imageView, Coord coordInit, Coord coordDest) {
-        PutArrow putArrow = new PutArrow(this, imageView, ANIMATION_DURATION, coordInit, coordDest);
+        PutArrow putArrow = new PutArrow(mContext, this, imageView, ANIMATION_DURATION, coordInit, coordDest);
         mAnimationHandler.sendMessage(mAnimationHandler
                 .obtainMessage(AnimationHandler.ADD_ANIMATION, putArrow));
     }
 
     public void hitArrow(ArrowView imageView, String state) {
-        HitArrow hitArrow = new HitArrow(this,imageView, ANIMATION_DURATION, state);
+        HitArrow hitArrow = new HitArrow(mContext, this,imageView, ANIMATION_DURATION, state);
         mAnimationHandler.sendMessage(mAnimationHandler
                 .obtainMessage(AnimationHandler.ADD_ANIMATION, hitArrow));
     }
@@ -76,8 +80,14 @@ public class BoardAnimationManager implements  AnimationQueueElementListener{
     }
 
     @Override
+    public void onAnimationStart() {
+        AnimationQueueElement element = mAnimationQueue.get(0);
+        SoundHelper.playSound(element.getSoundId());
+    }
+
+    @Override
     public void onAnimationEnd() {
-        mAnimationQueue.remove(0);
+        AnimationQueueElement element = mAnimationQueue.remove(0);
         nextAnimation();
     }
 

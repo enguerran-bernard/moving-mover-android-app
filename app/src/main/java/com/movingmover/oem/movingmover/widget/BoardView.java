@@ -78,7 +78,7 @@ public class BoardView extends ViewGroup {
             }
             mSquares.add(list);
         }
-        mBoardAnimationManager = new BoardAnimationManager(this);
+        mBoardAnimationManager = new BoardAnimationManager(getContext(), this);
     }
 
     private int getMeasure(int spec, int screenSize) {

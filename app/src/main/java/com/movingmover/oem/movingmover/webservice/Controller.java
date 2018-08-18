@@ -21,7 +21,7 @@ public class Controller implements GameEventListener {
     private ArrayList<ControllerListener> mListeners;
 
     public Controller() {
-        mService = RetrofitUtil.getServiceMock();
+        mService = RetrofitUtil.getService();
         mListeners = new ArrayList<>();
     }
 

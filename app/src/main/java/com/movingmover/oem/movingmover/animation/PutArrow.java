@@ -1,9 +1,12 @@
 package com.movingmover.oem.movingmover.animation;
+import android.content.Context;
+import android.media.MediaPlayer;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 
+import com.movingmover.oem.movingmover.R;
 import com.movingmover.oem.movingmover.helper.Coord;
 import com.movingmover.oem.movingmover.widget.BoardView;
 
@@ -12,9 +15,9 @@ public class PutArrow extends AnimationQueueElement {
     private Coord mCoordInit;
     private Coord mCoordDest;
 
-    public PutArrow(BoardAnimationManager boardAnimationManager, ImageView imageView,
+    public PutArrow(Context context, BoardAnimationManager boardAnimationManager, ImageView imageView,
                     int duration, Coord coordInit, Coord coordDest) {
-        super(boardAnimationManager, imageView, duration);
+        super(context, boardAnimationManager, imageView, duration);
         mCoordInit = coordInit;
         mCoordDest = coordDest;
     }
@@ -44,6 +47,7 @@ public class PutArrow extends AnimationQueueElement {
                     mImageView.post(new Runnable() {
                         @Override
                         public void run() {
+                            mBoardAnimationManager.onAnimationStart();
                         }
                     });
                 }
@@ -68,5 +72,10 @@ public class PutArrow extends AnimationQueueElement {
             animation.setFillAfter(false);
             mImageView.startAnimation(animation);
         }
+    }
+
+    @Override
+    public int getSoundId() {
+        return R.raw.putarrow;
     }
 }
