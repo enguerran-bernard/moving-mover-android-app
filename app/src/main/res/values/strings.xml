@@ -1,9 +1,20 @@
 <resources>
     <string name="app_name">MovingMover</string>
     <string name="login_activity_title">MOVING MOVER</string>
-    <string name="login_text">identifier</string>
-    <string name="password_text">password</string>
-    <string name="login_confirmation_text">OK</string>
+    <string name="login_name">Beautiful Email</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="login_password">Password</string>
+    <string name="email">Email</string>
+    <string name="login_confirmation_text">LET\'S MOVE</string>
+    <string name="forgotten_password"><u>Forgotten Password</u></string>
+    <string name="login_ip_address">Server IP</string>
+    <string name="create_account">Create Account</string>
+    <string name="validate_account">Validate Account</string>
+    <string name="confirm">Confirm</string>
+    <string name="back">Back</string>
+    <string name="verify_internet_connection">operation failed, please check internet connection</string>
+    <string name="wrong_credentials">wrong credentials</string>
 
     <string name="ia_activity_title">WELCOME</string>
     <string name="game_confirmation_text">LET IT GO</string>

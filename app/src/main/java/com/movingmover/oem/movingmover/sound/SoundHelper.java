@@ -48,16 +48,13 @@ public class SoundHelper {
             return;
         }
         int res = soundPool.load(context, resId, SOUND_PRIORITY);
-        Log.i("soundHelper", "play sound... add: " + resId + " - " + res);
         sLoadedSounds.put(resId, res);
     }
 
     public static void playSound(int resId) {
-        Log.i("soundHelper", "play sound... get begins... " + R.raw.death + " vs " + resId);
         if (sLoadedSounds.get(resId) == null) {
             return;
         }
-        Log.i("soundHelper", "play sound... get: " + sLoadedSounds.get(resId));
         sSoundPool.play(sLoadedSounds.get(resId), LEFT_VOLUME, RIGHT_VOLUME, SOUND_PRIORITY, NO_LOOP, SOUND_RATE);
     }
 }

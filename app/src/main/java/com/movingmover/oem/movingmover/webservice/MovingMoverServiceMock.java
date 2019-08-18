@@ -1,12 +1,9 @@
 package com.movingmover.oem.movingmover.webservice;
 
-import com.movingmover.oem.movingmover.animation.PlayerDeath;
-import com.movingmover.oem.movingmover.webservice.data.ActionHitArrow;
 import com.movingmover.oem.movingmover.webservice.data.ActionMove;
 import com.movingmover.oem.movingmover.webservice.data.ActionPlayerDead;
-import com.movingmover.oem.movingmover.webservice.data.ActionPutArrow;
+import com.movingmover.oem.movingmover.webservice.data.Credentials;
 import com.movingmover.oem.movingmover.webservice.data.Game;
-import com.movingmover.oem.movingmover.webservice.data.GameEvent;
 import com.movingmover.oem.movingmover.webservice.data.GameHistory;
 import com.movingmover.oem.movingmover.webservice.data.MapSize;
 import com.movingmover.oem.movingmover.webservice.data.PlacementPlayer;
@@ -17,7 +14,7 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.mock.BehaviorDelegate;
 
-public class MovingMoverServiceMock implements MovingMoverService{
+public class MovingMoverServiceMock implements MovingMoverService {
     public static final String ENDPOINT = "http://192.168.137.1:8181";
     BehaviorDelegate<MovingMoverService> mDelegate;
     public MovingMoverServiceMock(BehaviorDelegate<MovingMoverService> delegate) {
@@ -120,7 +117,7 @@ public class MovingMoverServiceMock implements MovingMoverService{
 }*/
         }
 
-        GameHistory gameHistory10= new GameHistory();
+        GameHistory gameHistory10 = new GameHistory();
         gameHistory10.timeExecution = 10;
         ActionPlayerDead actionPlayerDead = new ActionPlayerDead();
         actionPlayerDead.idClasse = "DeadPlayerDto";
@@ -153,5 +150,10 @@ public class MovingMoverServiceMock implements MovingMoverService{
 */
         game.histoEventsDto = events;
         return mDelegate.returningResponse(game).getGame();
+    }
+
+    @Override
+    public Call<Boolean> connect(Credentials credentials) {
+        return mDelegate.returningResponse(new Boolean(Boolean.FALSE)).connect(credentials);
     }
 }

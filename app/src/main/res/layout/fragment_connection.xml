@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    tools:context="com.movingmover.oem.movingmover.login.LoginActivity">
+
+    <EditText
+        android:id="@+id/login_edit"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        style="@style/EditText"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintVertical_bias="0.0"
+        android:hint="@string/login_name"
+        android:drawableLeft="@drawable/login_name" />
+
+
+    <EditText
+        android:id="@+id/password_edit"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        style="@style/EditText"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintVertical_bias="0.12"
+        android:hint="@string/login_password"
+        android:inputType="textPassword"
+        android:drawableLeft="@drawable/key"/>
+
+    <Button
+        android:id="@+id/connection_button"
+        android:layout_width="120dp"
+        android:layout_height="70dp"
+        android:background="@drawable/button_selector"
+        android:gravity="center"
+        android:text="@string/login_confirmation_text"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@id/login_edit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/login_edit"
+        app:layout_constraintBottom_toBottomOf="@id/password_edit" />
+
+    <TextView
+        android:id="@+id/forgotten_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="@string/forgotten_password"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintVertical_bias="0.24"
+        android:textColor="#7777FF" />
+
+    <TextView
+        android:id="@+id/error_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textColor="@color/red_dark"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintVertical_bias="0.36" />
+
+    <Button
+        android:id="@+id/create_account_button"
+        android:layout_width="160dp"
+        android:layout_height="70dp"
+        android:background="@drawable/button_selector"
+        android:gravity="center"
+        android:text="@string/create_account"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintVertical_bias="0.55"/>
+
+    <EditText
+        android:id="@+id/ip_value_edit_text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintVertical_bias="0.9"
+        style="@style/EditText"
+        android:hint="@string/login_ip_address"/>
+
+</android.support.constraint.ConstraintLayout>

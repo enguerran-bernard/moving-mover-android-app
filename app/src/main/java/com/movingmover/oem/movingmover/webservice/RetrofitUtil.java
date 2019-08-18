@@ -3,6 +3,7 @@ package com.movingmover.oem.movingmover.webservice;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.movingmover.oem.movingmover.webservice.data.GameEvent;
+import com.movingmover.oem.movingmover.webservice.deserializer.GameEventDeserializer;
 
 import java.util.concurrent.TimeUnit;
 
@@ -13,18 +14,19 @@ import retrofit2.mock.MockRetrofit;
 import retrofit2.mock.NetworkBehavior;
 
 public class RetrofitUtil {
-    public static MovingMoverService getService() {
+    public static MovingMoverService getService(String endPoint) {
+        //SharedPreferences settings = getSharedPreferences(MovingMoverService.SERVER_IP_PREFERENCE, MODE_PRIVATE)
         return new Retrofit.Builder()
-                .baseUrl(MovingMoverService.ENDPOINT)
+                .baseUrl(endPoint)
                 .addConverterFactory(buildGameEventGsonConverter())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
                 .create(MovingMoverService.class);
     }
 
-    public static MovingMoverService getServiceMock() {
+    public static MovingMoverService getServiceMock(String endPoint) {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(MovingMoverService.ENDPOINT)
+                .baseUrl(endPoint)
                 .addConverterFactory(buildGameEventGsonConverter())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();

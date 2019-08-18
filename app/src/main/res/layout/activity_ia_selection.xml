@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.movingmover.oem.movingmover.LoginActivity">
+    tools:context="com.movingmover.oem.movingmover.login.LoginActivity">
 
     <TextView
         android:id="@+id/ia_activity_title"
